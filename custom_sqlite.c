@@ -1,7 +1,7 @@
 #include "custom_sqlite.h"
 #include <stdio.h>
 
-static int callback(void *data, int argc, char **argv, char **azColName) {
+static int callback(void *data, int argc, char *argv[], char *azColName[]) {
   int i;
   fprintf(stderr, "%s: \n", (const char *)data);
   for (i = 0; i < argc; i++) {
@@ -16,7 +16,7 @@ int open_db(const char *db_name) {
   char *zErrMsg = 0;
   int rc;
   char *sql_stmt;
-  const char *data = "Callback function called";
+  const char *data = "Callback called";
 
   rc = sqlite3_open(db_name, &db);
   if (rc) {
